@@ -1,10 +1,18 @@
 import React, { FC } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 
-const CategoriesScreen: FC = () => {
+interface CategoriesScreenProps {
+  navigation: any;
+}
+
+const CategoriesScreen: FC<CategoriesScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>I&apos;m in the CategoriesScreen component!</Text>
+      <Button
+        title="Go to Meals"
+        onPress={() => navigation.navigate('CategoryMeals')}
+      />
     </View>
   );
 };

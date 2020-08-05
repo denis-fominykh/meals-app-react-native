@@ -1,8 +1,16 @@
+import 'react-native-gesture-handler';
 import React, { FC, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppLoading } from 'expo';
 
 import { fetchFonts } from './services/fetchFontsServices';
+import CategoriesScreen from './screens/CategoriesScreen';
+import CategoryMealsScreen from './screens/CategoryMealsScreen';
+import MealDetailScreen from './screens/MealDetailScreen';
+
+const Stack = createStackNavigator();
 
 const App: FC = () => {
   const [fontLoaded, setFontLoaded] = useState<boolean>(false);
@@ -18,19 +26,16 @@ const App: FC = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Categories" headerMode="none">
+          <Stack.Screen name="Categories" component={CategoriesScreen} />
+          <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

@@ -1,5 +1,13 @@
 import React, { FC } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+
+import { CATEGORIES } from '../data/dummyData';
 
 interface CategoriesScreenProps {
   navigation: any;
@@ -8,10 +16,18 @@ interface CategoriesScreenProps {
 const CategoriesScreen: FC<CategoriesScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>I&apos;m in the CategoriesScreen component!</Text>
-      <Button
-        title="Go to Meals"
-        onPress={() => navigation.navigate('CategoryMeals')}
+      <FlatList
+        numColumns={2}
+        keyExtractor={(item) => item.id}
+        data={CATEGORIES}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.gridItem}
+            onPress={() => navigation.navigate('CategoryMeals')}
+          >
+            <Text>{item.title}</Text>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
@@ -19,10 +35,12 @@ const CategoriesScreen: FC<CategoriesScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#FFFFFF',
+  },
+  gridItem: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 15,
+    height: 150,
   },
 });
 

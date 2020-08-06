@@ -23,7 +23,9 @@ const CategoriesScreen: FC<CategoriesScreenProps> = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.gridItem}
-            onPress={() => navigation.navigate('CategoryMeals')}
+            onPress={() =>
+              navigation.navigate('CategoryMeals', { categoryId: item.id })
+            }
           >
             <Text>{item.title}</Text>
           </TouchableOpacity>

@@ -37,7 +37,19 @@ const App: FC = () => {
                 Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour,
             }}
           />
-          <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+          <Stack.Screen
+            name="CategoryMeals"
+            component={CategoryMealsScreen}
+            options={({ route }) => ({
+              title: route.params.headerTitle,
+              headerStyle: {
+                backgroundColor:
+                  Platform.OS === 'android' ? Colours.primaryColour : '#FFFFFF',
+              },
+              headerTintColor:
+                Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour,
+            })}
+          />
           <Stack.Screen name="MealDetail" component={MealDetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>

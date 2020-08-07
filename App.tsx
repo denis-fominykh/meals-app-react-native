@@ -42,6 +42,7 @@ const App: FC = () => {
             component={CategoryMealsScreen}
             options={({ route }) => ({
               title: route.params.headerTitle,
+              headerBackTitle: 'Back',
               headerStyle: {
                 backgroundColor:
                   Platform.OS === 'android' ? Colours.primaryColour : '#FFFFFF',

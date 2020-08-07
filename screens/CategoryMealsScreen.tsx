@@ -25,7 +25,9 @@ const CategoryMealsScreen: FC<CategoryMealsScreenProps> = ({
         style={{ width: '100%' }}
         keyExtractor={(item) => item.id}
         data={displayedMeals}
-        renderItem={({ item }) => <MealItem item={item} />}
+        renderItem={({ item }) => (
+          <MealItem navigation={navigation} item={item} />
+        )}
       />
     </View>
   );

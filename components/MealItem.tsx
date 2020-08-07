@@ -12,10 +12,11 @@ import {
 import Meal from '../models/meal';
 
 interface MealItemProps {
+  navigation: any;
   item: Meal;
 }
 
-const MealItem: FC<MealItemProps> = ({ item }) => {
+const MealItem: FC<MealItemProps> = ({ navigation, item }) => {
   const TouchableComponent: React.ReactNode =
     Platform.OS === 'android' && Platform.Version >= 21
       ? TouchableNativeFeedback
@@ -23,7 +24,14 @@ const MealItem: FC<MealItemProps> = ({ item }) => {
 
   return (
     <View style={styles.mealItem}>
-      <TouchableComponent onPress={() => {}}>
+      <TouchableComponent
+        onPress={() => {
+          navigation.navigate('MealDetail', {
+            mealId: item.id,
+            headerTitle: item.title,
+          });
+        }}
+      >
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground
@@ -55,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderRadius: 10,
     overflow: 'hidden',
+    marginVertical: 10,
   },
   bgImage: {
     width: '100%',

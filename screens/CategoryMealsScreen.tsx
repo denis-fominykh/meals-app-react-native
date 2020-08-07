@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
-import { CATEGORIES } from '../data/dummyData';
+import { MEALS } from '../data/dummyData';
+import MealItem from '../components/MealItem';
 
 interface CategoryMealsScreenProps {
   route: any;
@@ -14,16 +15,18 @@ const CategoryMealsScreen: FC<CategoryMealsScreenProps> = ({
 }) => {
   const { categoryId } = route.params;
 
-  const selectedCategory = CATEGORIES.find((cat) => cat.id === categoryId);
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(categoryId) >= 0,
+  );
 
   return (
     <View style={styles.container}>
-      <Text>{selectedCategory ? selectedCategory.title : 'Error'}</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('MealDetail')}
+      <FlatList
+        style={{ width: '100%' }}
+        keyExtractor={(item) => item.id}
+        data={displayedMeals}
+        renderItem={({ item }) => <MealItem item={item} />}
       />
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
     </View>
   );
 };
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 15,
   },
 });
 

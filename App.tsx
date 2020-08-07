@@ -11,6 +11,8 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import CategoryMealsScreen from './screens/CategoryMealsScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 
+import HeaderButton from './components/HeaderButton';
+
 const Stack = createStackNavigator();
 
 const App: FC = () => {
@@ -51,7 +53,21 @@ const App: FC = () => {
                 Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour,
             })}
           />
-          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+            options={({ route }) => ({
+              title: route.params.headerTitle,
+              headerBackTitle: 'Back',
+              headerRight: () => <HeaderButton />,
+              headerStyle: {
+                backgroundColor:
+                  Platform.OS === 'android' ? Colours.primaryColour : '#FFFFFF',
+              },
+              headerTintColor:
+                Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour,
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

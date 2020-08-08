@@ -24,7 +24,7 @@ const TabNavigator: FC = () => (
       },
     })}
     tabBarOptions={{
-      activeTintColor: Colours.primaryColour,
+      activeTintColor: Colours.accentColour,
       inactiveTintColor: 'gray',
     }}
   >

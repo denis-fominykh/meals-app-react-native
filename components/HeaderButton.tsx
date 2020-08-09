@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, Platform } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Colours from '../constants/Colours';
 
 const HeaderButton: FC = () => {
-  return (
-    <TouchableOpacity style={styles.container}>
-      <Icon
-        name="star-sharp"
-        size={23}
-        color={Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour}
-      />
-    </TouchableOpacity>
-  );
+  const icon =
+    Platform.OS === 'android' ? (
+      <MaterialCommunityIcons name="star-circle" color="#FFFFFF" size={25} />
+    ) : (
+      <Ionicons name="star-sharp" size={23} color={Colours.primaryColour} />
+    );
+
+  return <TouchableOpacity style={styles.container}>{icon}</TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({

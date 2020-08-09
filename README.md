@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [React Native CLI](https://reactnative.dev/docs/environment-setup). <br />
 
+![screens](./assets/screens.png)
+
 ## Available Scripts
 
 In the project directory, you can run:

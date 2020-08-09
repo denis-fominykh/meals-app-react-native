@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MealsStackNavigator from './MealsStackNavigator';
-import FavoritesScreen from '../screens/FavoritesScreen';
+import FavoritesStackNavigator from './FavoritesStackNavigator';
 import Colours from '../constants/Colours';
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ const TabNavigator: FC = () => {
         />
         <MaterialTab.Screen
           name="Favorites"
-          component={FavoritesScreen}
+          component={FavoritesStackNavigator}
           options={{
             tabBarLabel: 'Favorites',
             tabBarIcon: ({ color }) => (
@@ -75,7 +75,7 @@ const TabNavigator: FC = () => {
       }}
     >
       <Tab.Screen name="Meals" component={MealsStackNavigator} />
-      <Tab.Screen name="Favorites" component={FavoritesScreen} />
+      <Tab.Screen name="Favorites" component={FavoritesStackNavigator} />
     </Tab.Navigator>
   );
 };

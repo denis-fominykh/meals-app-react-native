@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
 import HeaderButton from '../components/HeaderButton';
 import Colours from '../constants/Colours';
 

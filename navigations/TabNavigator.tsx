@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import StackNavigator from './StackNavigator';
+import MealsStackNavigator from './MealsStackNavigator';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import Colours from '../constants/Colours';
 
@@ -22,7 +22,7 @@ const TabNavigator: FC = () => {
       >
         <MaterialTab.Screen
           name="Meals"
-          component={StackNavigator}
+          component={MealsStackNavigator}
           options={{
             tabBarLabel: 'Meals',
             tabBarIcon: ({ color }) => (
@@ -74,7 +74,7 @@ const TabNavigator: FC = () => {
         inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen name="Meals" component={StackNavigator} />
+      <Tab.Screen name="Meals" component={MealsStackNavigator} />
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
     </Tab.Navigator>
   );

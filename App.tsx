@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import TabNavigator from './navigations/TabNavigator';
+import DrawerNavigator from './navigations/DrawerNavigator';
 import Colours from './constants/Colours';
 
 const App: FC = () => {
@@ -21,7 +21,7 @@ const App: FC = () => {
           }
         />
         <NavigationContainer>
-          <TabNavigator />
+          <DrawerNavigator />
         </NavigationContainer>
       </PaperProvider>
     </SafeAreaProvider>

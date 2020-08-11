@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { DrawerActions } from '@react-navigation/native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -15,15 +16,22 @@ const MealsStackNavigator: FC = () => (
     <Stack.Screen
       name="Categories"
       component={CategoriesScreen}
-      options={{
+      options={({ navigation }) => ({
         title: 'Meal Categories',
+        headerLeft: () => (
+          <HeaderButton
+            androidIconName="menu"
+            iosIconName="ios-menu"
+            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+          />
+        ),
         headerStyle: {
           backgroundColor:
             Platform.OS === 'android' ? Colours.primaryColour : '#FFFFFF',
         },
         headerTintColor:
           Platform.OS === 'android' ? '#FFFFFF' : Colours.primaryColour,
-      }}
+      })}
     />
     <Stack.Screen
       name="CategoryMeals"
@@ -45,7 +53,12 @@ const MealsStackNavigator: FC = () => (
       options={({ route }) => ({
         title: route.params.headerTitle,
         headerBackTitle: 'Back',
-        headerRight: () => <HeaderButton />,
+        headerRight: () => (
+          <HeaderButton
+            androidIconName="star-circle"
+            iosIconName="star-sharp"
+          />
+        ),
         headerStyle: {
           backgroundColor:
             Platform.OS === 'android' ? Colours.primaryColour : '#FFFFFF',

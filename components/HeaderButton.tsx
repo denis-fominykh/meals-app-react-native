@@ -5,20 +5,38 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Colours from '../constants/Colours';
 
-const HeaderButton: FC = () => {
+interface HeaderButtonProps {
+  androidIconName: string;
+  iosIconName: string;
+  onPress?: () => void;
+}
+
+const HeaderButton: FC<HeaderButtonProps> = ({
+  androidIconName,
+  iosIconName,
+  onPress,
+}) => {
   const icon =
     Platform.OS === 'android' ? (
-      <MaterialCommunityIcons name="star-circle" color="#FFFFFF" size={25} />
+      <MaterialCommunityIcons
+        name={androidIconName}
+        color="#FFFFFF"
+        size={25}
+      />
     ) : (
-      <Ionicons name="star-sharp" size={23} color={Colours.primaryColour} />
+      <Ionicons name={iosIconName} size={23} color={Colours.primaryColour} />
     );
 
-  return <TouchableOpacity style={styles.container}>{icon}</TouchableOpacity>;
+  return (
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      {icon}
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 10,
+    paddingHorizontal: 10,
   },
 });
 

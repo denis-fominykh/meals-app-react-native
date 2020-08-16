@@ -1,7 +1,15 @@
 import React, { FC } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  ScrollView,
+  Image,
+} from 'react-native';
 
 import { MEALS } from '../data/dummyData';
+import DetailListItem from '../components/DetailListItem';
 
 interface MealDetailScreenProps {
   route: any;
@@ -14,22 +22,55 @@ const MealDetailScreen: FC<MealDetailScreenProps> = ({ route, navigation }) => {
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return (
-    <View style={styles.container}>
-      <Text>{selectedMeal ? selectedMeal.title : 'Error'}</Text>
-      <Button
-        title="Go to CategoriesScreen"
-        onPress={() => navigation.popToTop()}
+    <ScrollView>
+      <Image
+        source={{ uri: selectedMeal ? selectedMeal.imageUrl : 'null' }}
+        style={styles.image}
       />
-    </View>
+      <View style={styles.details}>
+        <Text>{selectedMeal ? selectedMeal.duration : 'Some Error!'} min</Text>
+        <Text>
+          {selectedMeal ? selectedMeal.complexity.toUpperCase() : 'Some Error!'}
+        </Text>
+        <Text>
+          {selectedMeal
+            ? selectedMeal.affordability.toUpperCase()
+            : 'Some Error!'}
+        </Text>
+      </View>
+      <Text style={styles.title}>Ingredients</Text>
+      {!selectedMeal ? (
+        <Text>Ingredients Error</Text>
+      ) : (
+        selectedMeal.ingredients.map((ingredient, idx) => (
+          <DetailListItem key={idx}>{ingredient}</DetailListItem>
+        ))
+      )}
+      <Text style={styles.title}>Steps</Text>
+      {!selectedMeal ? (
+        <Text>Ingredients Error</Text>
+      ) : (
+        selectedMeal.steps.map((step, idx) => (
+          <DetailListItem key={idx}>{step}</DetailListItem>
+        ))
+      )}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  details: {
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-around',
+  },
+  title: {
+    fontSize: 22,
+    textAlign: 'center',
   },
 });
 
